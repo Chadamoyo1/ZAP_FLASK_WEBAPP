@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn Flask App
+After=network.target
+
+[Service]                                                                      
+User=chada
+Group=www-data
+WorkingDirectory=/home/chada/zapproject
+EnvironmentFile=/etc/myflaskapp/.env
+Environment="PATH=/home/chada/zapproject/zapvenv/bin"
+Environment="HOME=/etc"
+ExecStart=/home/chada/zapproject/zapvenv/bin/gunicorn --workers 3 --bind unix:/home/chada/zapproject/zapflask.sock wsgi:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

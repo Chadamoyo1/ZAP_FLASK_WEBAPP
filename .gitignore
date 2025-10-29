@@ -1,0 +1,16 @@
+# Environment files
+.env
+*.pyc
+__pycache__/
+
+# Virtual environment folders
+venv/
+.env/
+
+# Logs and reports
+*.log
+*.html
+
+# System files
+.DS_Store
+Thumbs.db

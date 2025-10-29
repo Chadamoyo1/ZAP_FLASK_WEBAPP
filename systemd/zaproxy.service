@@ -1,0 +1,15 @@
+[Unit]
+Description=OWASP ZAP Proxy
+After=network.target
+
+[Service]
+Type=simple
+User=chada
+Group=www-data
+Environment="HOME=/etc/myflaskapp"
+EnvironmentFile=/etc/myflaskapp/.env
+ExecStart=/bin/bash -c '/usr/local/bin/zap -daemon -host ${ZAP_HOST} -port ${ZAP_PORT} -config api.key=${API_KEY}'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
