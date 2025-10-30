@@ -229,6 +229,23 @@ GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 EOF
 
+sudo mariadb -u "$DB_USER" -p"$DB_PASS" <<EOF
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+USE $DB_NAME;
+
+CREATE TABLE IF NOT EXISTS zap_scan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    target_url VARCHAR(255),
+    risk VARCHAR(50),
+    alert VARCHAR(255),
+    description TEXT,
+    solution TEXT,
+    scanned_at DATETIME
+);
+EOF
+
+echo "Database table zap-scan succesifully created !!! "
+
 echo "MariaDB installation and configuration complete!"
 echo "User '$DB_USER' created with access to database '$DB_NAME'."
 
@@ -438,7 +455,7 @@ os.makedirs(REPORT_DIR, exist_ok=True)
 #...................................................................
 # --- DATABASE MODEL ---
 class scanner_results(db.Model):
-    __tablename__ = "zap_scan"
+    __tablename__ = 'zap_scan'
     id = db.Column(db.Integer, primary_key=True)
     target_url = db.Column(db.String(255))
     risk= db.Column(db.String(50))
