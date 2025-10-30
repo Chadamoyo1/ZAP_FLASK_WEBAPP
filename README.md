@@ -69,31 +69,35 @@ This project presents a Flask web application that automates vulnerability scann
 
 ## Problems solved by the project
 
-PROBLEM:                    Manual scanning is repetitive and slow
 
-SOLUTION:                   Automated OWASP ZAP integration
+PROBLEM #1:                    Manual scanning is repetitive and slow
 
-....................................................
-PROBLEM:                    Non-technical users can’t use CLI tools 
+SOLUTION:                      Automated OWASP ZAP integration
 
-SOLUTION:                   Web-based interface with Flask
-....................................................
 
-PROBLEM:                    Scan results not centralized 
 
-SOLUTION:                   Reports stored in MariaDB
-....................................................
+PROBLEM #2:                    Non-technical users can’t use CLI tools 
 
-PROBLEM:                    Insecure deployments
+SOLUTION:                      Web-based interface with Flask
 
-SOLUTION:                   HTTPS access via Nginx SSL
 
-....................................................
-PROBLEM:                    Reproducibility issues
 
-SOLUTION:                   Standardised API-Driven Scans
+PROBLEM #3:                    Scan results not centralized 
 
-....................................................
+SOLUTION:                      Reports stored in MariaDB
+
+
+
+PROBLEM #4:                    Insecure deployments
+
+SOLUTION:                      HTTPS access via Nginx SSL
+
+
+PROBLEM #5:                    Reproducibility issues
+
+SOLUTION:                      Standardised API-Driven Scans
+
+
 
 ## Usage
 
@@ -101,53 +105,57 @@ You need to have an AWS Account
 
 Avoid using root account.Create a user and implement  MFA (Recommended)
 
-1. Create an EC2 Instance
+1. ### CREATE AN EC2 INSTANCE
 
-  -Choose Ubuntu OS
+  ---------Choose Ubuntu OS
 
-  -At least 4 GB RAM (t3.medium)
+  ---------At least 4 GB RAM (t3.medium)
 
-  -create a key pair (e.g key.pem) and attach to your instance 
+  ---------create a key pair (e.g key.pem) and attach to your instance 
 
-  -Security Group:allow ssh,http ,https and tcp port 5000 from anywhere (0.0.0.0/0)
+  ---------Security Group:allow ssh,http ,https and tcp port 5000 from anywhere (0.0.0.0/0)
 
 
-2. ssh into your ec2 instance 
+2. ### SSH INTO YOUR INSTANCE
 
-  $ ssh -i key.pem ubuntu@ec2 _public_ip
+  ++++++++++$ ssh -i key.pem ubuntu@ec2 _public_ip
 
   Replace key.pem with your key name and ec2_public IP with the public ip of the ec2 instance you created
 
-3. clone the repository from git and run the script
+3.  ### CLONE THE REPOSITORY FROM GITHUB AND RUN THE SCRIPT
 
-  $sudo chmod +x script              # make the file executable
+  ++++++++++$ git clone https://www.github.com/Chadamoyo1/ZAP_WEB_APP.gt
+  
+  ++++++++++$ cd ZAP_WEB_APP
 
-  $sudo ./script.sh                  # run the script
+  ++++++++++$ sudo chmod +x script              # make the file executable
+
+  ++++++++++$ sudo ./script.sh                  # run the script
 
 you will be pompted to type in/set the following parameters:
 
-  ---- project_username and paasword of your choice
+  ------- project_username and paasword of your choice
 
-  -----mariadb root password
+  --------database root password
 
-  -----mariad db username and password 
+  --------database username and password (for flask app user)
 
-  -----database name
+  --------database name
 
-4. After completing the setup,switch from ubuntu user to the project_user name you created 
+4. ### AFTER SET UP IS COMPLETE,SWITCH FROM UBUNTU USER TO THE PROJECT_USER NAME YOU CREATED . 
 
-   $ su - project_username           
+   +++++++++++$ su - project_username           
 
-5. switch to the project folder
+5. ### SWITCH TO THE PROJET FOLDER 
 
-   $ cd zapproject                   
+   +++++++++++$ cd zapproject                   
 
-6. activate virtual environment
+6. ### ACTIVATE VIRTUAL ENVIRONMENT
 
-   $ source -zapvenv/bin/activate    
+   ++++++++++++$ source -zapvenv/bin/activate    
 
-Now you can access the flask application by typing your ec2 instance public ip in the
-browser  ,type in your url to start spidering and scanning.
+#### Now you can access the flask application by typing your ec2 instance public ip in the
+#### browser  !!!!!!!
 
 
 
