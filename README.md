@@ -104,8 +104,7 @@ SOLUTION:                      Standardised API-Driven Scans
 You need to have an AWS Account
 
 Avoid using root account.Create a user and implement  MFA (Recommended)
-
-1. ### CREATE AN EC2 INSTANCE
+##### 1. CREATE AN EC2 INSTANCE
 
   ---------Choose Ubuntu OS
 
@@ -115,22 +114,21 @@ Avoid using root account.Create a user and implement  MFA (Recommended)
 
   ---------Security Group:allow ssh,http ,https and tcp port 5000 from anywhere (0.0.0.0/0)
 
-
-2. ### SSH INTO YOUR INSTANCE
+##### 2. SSH INTO YOUR INSTANCE
 
   ++++++++++$ ssh -i key.pem ubuntu@ec2 _public_ip
 
   Replace key.pem with your key name and ec2_public IP with the public ip of the ec2 instance you created
 
-3.  ### CLONE THE REPOSITORY FROM GITHUB AND RUN THE SCRIPT
+##### 3. CLONE THE project REPOSITORY FROM GITHUB AND RUN THE SCRIPT
 
-  ++++++++++$ git clone https://www.github.com/Chadamoyo1/ZAP_WEB_APP.gt
+  ++++++++++$ git clone https://github.com/Chadamoyo1/ZAP_FLASK_WEBAPP.git
   
-  ++++++++++$ cd ZAP_WEB_APP
+  ++++++++++$ cd ZAP_FLASK_WEBAPP
+  
+  ++++++++++$ sudo chmod +x script              
 
-  ++++++++++$ sudo chmod +x script              # make the file executable
-
-  ++++++++++$ sudo ./script.sh                  # run the script
+  ++++++++++$ sudo ./script.sh                 
 
 you will be pompted to type in/set the following parameters:
 
@@ -142,17 +140,17 @@ you will be pompted to type in/set the following parameters:
 
   --------database name
 
-4. ### AFTER SET UP IS COMPLETE,SWITCH FROM UBUNTU USER TO THE PROJECT_USER NAME YOU CREATED . 
+##### 4. AFTER SET UP IS COMPLETE,SWITCH FROM UBUNTU USER TO THE PROJECT_USER NAME YOU CREATED . 
 
    +++++++++++$ su - project_username           
+   
+##### 5. SWITCH TO THE PROJET FOLDER 
 
-5. ### SWITCH TO THE PROJET FOLDER 
+   +++++++++++$ cd zapproject        
+   
+##### 6. ACTIVATE VIRTUAL ENVIRONMENT
 
-   +++++++++++$ cd zapproject                   
-
-6. ### ACTIVATE VIRTUAL ENVIRONMENT
-
-   ++++++++++++$ source -zapvenv/bin/activate    
+   ++++++++++++$ source zapvenv/bin/activate    
 
 #### Now you can access the flask application by typing your ec2 instance public ip in the
 #### browser  !!!!!!!
