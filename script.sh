@@ -437,7 +437,8 @@ os.makedirs(REPORT_DIR, exist_ok=True)
 
 #...................................................................
 # --- DATABASE MODEL ---
-class scan_results(db.Model):
+class scanner_results(db.Model):
+    __tablename__ = "zap_scan"
     id = db.Column(db.Integer, primary_key=True)
     target_url = db.Column(db.String(255))
     risk= db.Column(db.String(50))
@@ -473,7 +474,7 @@ def scan():
 
 
     # Save to DB
-    result = scan_results(target_url=target_url)
+    result = scanner_results(target_url=target_url)
     db.session.add(result)
     db.session.commit()
     return render_template('results.html', report_name=filename)
@@ -486,7 +487,8 @@ def download(report_name):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 EOF
 
